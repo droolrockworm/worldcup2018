@@ -1,0 +1,25 @@
+    <input #newHero
+      (keyup.enter)="processCommand(newHero.value)"
+      (blur)="processCommand(newHero.value); newHero.value='' ">
+
+    <button (click)="processCommand(newHero.value)">Enter</button>
+    <div *ngIf = "this.currentTeam">
+      {{this.currentTeam.country}}
+      <div *ngIf = "this.currentTeam.matches">
+        <div *ngFor = "let i of this.currentTeam.matches">
+          {{i}}
+        </div>
+      </div>
+    </div>
+
+    <ul><li *ngFor="let team of this.fifaService.teamsjson">
+      {{team.country}}
+      <ul><li *ngFor="let match of team.matches">
+        vs. {{match.opponent}}
+        Won: {{match.won}}
+        Score: {{match.score}}
+
+
+      </li></ul>
+
+    </li></ul>
